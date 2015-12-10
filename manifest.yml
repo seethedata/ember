@@ -1,0 +1,7 @@
+---
+applications:
+- name: ember
+  memory: 512M
+  domain: cfapps.io
+  disk_quota: 100M
+buildpack: staticfile_buildpack
