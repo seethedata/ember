@@ -124,7 +124,7 @@
 					//Enable swiping...
 					$(".carousel-inner").swipe( {
 						//Generic swipe handler for all directions
-						swipeLeft:function(event, direction, distance, duration, fingerCount) {
+						swipeLeft:function() {
 							$(this).parent().carousel('next'); 
 						},
 						swipeRight: function() {
