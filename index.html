@@ -16,12 +16,13 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="sentLabel">Success</h4>
+						<h4 class="modal-title" id="sentLabel">Enter Email Address</h4>
 					</div>
 					<div class="modal-body" id="sentBody">
-			Emails sent.
+					<input type="text" value="your.email@here.com" onClick="this.value='';"></input>
 					</div>
 					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-dismiss="modal" onClick="sendEmail();">Send Email</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</div>
@@ -38,10 +39,12 @@
 								<span class="glyphicon glyphicon-envelope nav-glyph" aria-hidden="true"> </span> 
 								Emails
 								<span class="badge nav-badge" id="emailsBadge">0</span>
+								<span id="emailMessage"></span>
 							</a>
-							<ul id="emailList" class="dropdown-menu" role="menu">]
+							<ul class="dropdown-menu" role="menu">
 							<div class='text-center'>
-								<a id="sendButton" class="btn btn-success" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>
+								<a id="sendButton" class="btn btn-success" role="button" disabled="disabled" href="#"  data-toggle="modal" data-target="#sentModal">Send Emails</a>
+								<div id="emailList"></div>
 							</div>
 							</ul>
 						</li>
@@ -49,6 +52,33 @@
 				</div>
 			</div>
 		</nav>
+		<div class="input-group">
+		<span class="label">Industry</span>
+			<button value="All" id="industryBox" class="dropdown-toggle" data-toggle="dropdown" role="button">
+				<span id="buttonValue">All</span>
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu role="menu">
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('All');">All</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Automotive');">Automotive</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Banking');">Banking</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Education');">Education</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Engineering');">Engineering</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Energy');">Energy</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Financial');">Financial</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Food and Beverage');">Food and Beverage</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Government');">Government</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Healthcare');">Healthcare</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Insurance');">Insurance</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Manufacturing');">Manufacturing</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Media');">Media</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Retail');">Retail</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Technology');">Technology</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Telecommunications');">Telecommunications</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onClick="setIndustry('Transportation');">Transportation </a></li>
+			</ul>
+			</input>
+		</div>
 		<div class="container-fluid">
 			<div id="emails" class="carousel slide row col-xs-12">
 				<div class="carousel-inner" >
@@ -101,13 +131,11 @@
 			</div>
 		</div>
 		<script language="javascript">
-		function sendEmail() {
-			badge=document.getElementById("emailsBadge");
-							emailList=document.getElementById("emailList");
-							badge.innerHTML=0;
-							emailList.innerHTML='<a id="sendButton" class="btn btn-success" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>';
+		function enableEmail() {
+			
 		}
 		function addEmail() {
+				message=document.getElementById('emailMessage');
 				badge=document.getElementById("emailsBadge");
 				emailList=document.getElementById("emailList");
 				sendButton=document.getElementById("sendButton");
@@ -115,11 +143,27 @@
 				if (sendButton.hasAttribute("disabled")){
 					sendButton.removeAttribute("disabled");
 				}
-
+				message.innerHTML='';
 				var emailCount=badge.innerHTML;
 				emailCount++;
 				badge.innerHTML=emailCount;
 				emailList.innerHTML=emailList.innerHTML + "<li><a role='menuitem'>" + activeItem.getAttribute("name") + "</a></li>";
+		}
+		
+		function setIndustry(industry) {
+			e=document.getElementById("buttonValue");
+			e.innerHTML=industry;
+		}
+		
+		function sendEmail(){
+			message=document.getElementById('emailMessage');
+			message.innerHTML='Email(s) Sent!';
+			badge=document.getElementById("emailsBadge");
+			emailList=document.getElementById("emailList");
+			badge.innerHTML=0;
+			emailList.innerHTML='';
+			sendButton=document.getElementById("sendButton");
+			sendButton.setAttribute("disabled","disabled");
 		}
 		$(document).ready(function() {  
 
