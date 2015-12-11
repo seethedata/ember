@@ -36,7 +36,7 @@
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 								<span class="glyphicon glyphicon-ok-circle nav-glyph" aria-hidden="true"> </span> 
-				Emails
+								Emails
 								<span class="badge nav-badge" id="emailsBadge">0</span>
 							</a>
 							<ul id="emailList" class="dropdown-menu" role="menu">
@@ -103,22 +103,22 @@
 			badge=document.getElementById("emailsBadge");
 							emailList=document.getElementById("emailList");
 							badge.innerHTML=0;
-							emailList.innerHTML="";
+							emailList.innerHTML='<a id="sendButton" class="btn btn-success" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>';
 		}
 		function addEmail() {
-						badge=document.getElementById("emailsBadge");
-							emailList=document.getElementById("emailList");
-							sendButton=document.getElementById("sendButton");
-							activeItem=$( ".active" )[0];
-							if (sendButton.hasAttribute("disabled")){
-								sendButton.removeAttribute("disabled");
-							}
+				badge=document.getElementById("emailsBadge");
+				emailList=document.getElementById("emailList");
+				sendButton=document.getElementById("sendButton");
+				activeItem=$( ".active" )[0];
+				if (sendButton.hasAttribute("disabled")){
+					sendButton.removeAttribute("disabled");
+				}
 
-							var emailCount=badge.innerHTML;
-							emailCount++;
-							badge.innerHTML=emailCount;
-							emailList.innerHTML=emailList.innerHTML + "<li><a role='menuitem'>" + activeItem.getAttribute("name") + "</a></li>";
-					}
+				var emailCount=badge.innerHTML;
+				emailCount++;
+				badge.innerHTML=emailCount;
+				emailList.innerHTML=emailList.innerHTML + "<li><a role='menuitem'>" + activeItem.getAttribute("name") + "</a></li>";
+		}
 		$(document).ready(function() {  
 
 					//Enable swiping...
