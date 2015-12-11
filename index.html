@@ -1,46 +1,131 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>New York</title>
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-	<link rel="stylesheet" href="_assets/css/jqm-demos.css">
-	<link rel="stylesheet" href="swipe-page.css">
-	<link rel="shortcut icon" href="../favicon.ico">
-	<script src="js/jquery.min.js"></script>
-	<script src="_assets/js/index.js"></script>
-	<script src="js/jquery.mobile-1.4.5.min.js"></script>
-	<script src="swipe-page.js"></script>
-</head>
-<body>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Email1</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/ember.css"/>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/touchswipe.min.js"></script>
+	</head>
+	<body>
+		<div class="modal fade" id="sentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="sentLabel">Success</h4>
+					</div>
+					<div class="modal-body" id="sentBody">
+			Emails sent.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-fire nav-glyph"></span> Ember</a>
 
-<div id="header" data-role="header" data-id="header" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
-    <h1>New York</h1>
-    <a href="./" data-ajax="false" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Back</a>
-</div><!-- /header -->
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								<span class="glyphicon glyphicon-ok-circle nav-glyph" aria-hidden="true"> </span> 
+				Emails
+								<span class="badge nav-badge" id="emailsBadge">0</span>
+							</a>
+							<ul id="emailList" class="dropdown-menu" role="menu">
+								<a id="sendButton" class="btn btn-success" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<div id="emails" class="carousel slide row col-xs-12">
+				<div class="carousel-inner" >
+					<center><a href="#" onClick="addEmail()" class="grabLink"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+						<div>Grab Email</div></a></center>
+					<div id="email1" class="item active" name="Email #1"> 
+						<div class="email-content">
+							<p>Hello. I am the AE & Big Data Consultant with EMC federation (EMC, VMware, RSA) supporting ABC Company. 
+					Of many of the customers I speak with, 3 universal truths result from my conversation:</p>
 
-<div data-role="page" id="index" class="demo-page" data-title="New York" data-dom-cache="true" data-theme="b" data-next="buenosaires">
+							<p>1) They are not collecting all of the data they could be,
+						2) They are not utilizing all the data they have already, and 
+						3) They do not know how to best interpret and prioritize data courses to make insightful decisions to grow the business</p>
+						</div>
+					</div>
+					<div id="email2" class="item" name="Email #2">
+						<div class="email-content"> 
+							<p>Do you know that your data is not telling you everything it could? I'd love to get 15 minutes sometime next week to 
+					tell you how EMC can help.</p>
+							<p>We've done enourmous amounts of work with companies just like yours. Do you have time for coffee on Tuesday?</p>
 
-	<div role="main" class="ui-content">
 
-		<div id="trivia-newyork" class="trivia ui-content" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="a">
-        	<a href="#" data-rel="back" class="ui-btn ui-btn-right ui-btn-b ui-btn-icon-notext ui-icon-delete ui-corner-all">Close</a>
-			<p>Although many legends exist about the origin of New York City's nickname, the Big Apple, most historians agree that it can be traced back to a writer who covered horse racing in the 1920s. In The Morning Telegraph, he wrote that stable hands often referred to New York as the Big Apple, meaning that any thoroughbred that raced in New York had reached the pinnacle of racing. <small>source:&nbsp;nylady.hubpages.com</small></p>
-        </div>
+						</div>
+					</div>
+					<div id="email3" class="item" name="Email #3">
+						<div class="email-content">
+							<p>I'd like to chat about how our big data and IT Transformation workshop is fundamentally changing GTM strategies for many of our customers. Essentially, we measure the means to assess the value of the data you have and need to solve a key business question / problem, against how easy or difficult it is to attain access to that data. The effort is accomplished through EMC data scientists with PHD's that have the aptitude to provide max expertise and value. </p>
+						</div>
+					</div>
+				</div>
+				<!-- Controls -->
+				<a class="left carousel-control" href="#emails" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#emails" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
 
-	</div><!-- /content -->
+			</div>
+		</div>
+		<script language="javascript">
+		function sendEmail() {
+			badge=document.getElementById("emailsBadge");
+							emailList=document.getElementById("emailList");
+							badge.innerHTML=0;
+							emailList.innerHTML="";
+		}
+		function addEmail() {
+						badge=document.getElementById("emailsBadge");
+							emailList=document.getElementById("emailList");
+							sendButton=document.getElementById("sendButton");
+							activeItem=$( ".active" )[0];
+							if (sendButton.hasAttribute("disabled")){
+								sendButton.removeAttribute("disabled");
+							}
 
-</div><!-- /page -->
+							var emailCount=badge.innerHTML;
+							emailCount++;
+							badge.innerHTML=emailCount;
+							emailList.innerHTML=emailList.innerHTML + "<li><a role='menuitem'>" + activeItem.getAttribute("name") + "</a></li>";
+					}
+		$(document).ready(function() {  
 
-    <div id="footer" data-id="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
-		<div data-role="controlgroup" class="control ui-btn-left" data-type="horizontal" data-mini="true">
-        	<a href="#" class="prev ui-btn ui-btn-icon-notext ui-icon-carat-l">Previous</a>
-        	<a href="#" class="next ui-btn ui-btn-icon-notext ui-icon-carat-r">Next</a>
-        </div>
-
-		<a href="#trivia-newyork" id="trivia-button" data-rel="popup" class="trivia-btn ui-btn ui-btn-right ui-btn-icon-left ui-icon-info ui-mini ui-corner-all">Trivia</a>
-    </div><!-- /footer -->
-
-</body>
+					//Enable swiping...
+					$(".carousel-inner").swipe( {
+						//Generic swipe handler for all directions
+						swipeLeft:function(event, direction, distance, duration, fingerCount) {
+							$(this).parent().carousel('next'); 
+						},
+						swipeRight: function() {
+							$(this).parent().carousel('previous'); 
+						},
+						swipeUp: addEmail,
+						//Default is 75px, set to 0 for demo so any distance triggers swipe
+						threshold:0
+					});
+				});
+		</script>
+	</body>
 </html>
