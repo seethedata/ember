@@ -36,4 +36,5 @@ body {
 
 div.carousel-inner a {
 	color : #ffa500;
+	text-decoration:none;
 }

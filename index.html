@@ -40,7 +40,7 @@
 								<span class="badge nav-badge" id="emailsBadge">0</span>
 							</a>
 							<ul id="emailList" class="dropdown-menu" role="menu">
-								<a id="sendButton" class="btn btn-success" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>
+								<a id="sendButton" class="btn btn-success center-block" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>
 							</ul>
 						</li>
 					</ul>
@@ -103,7 +103,7 @@
 			badge=document.getElementById("emailsBadge");
 							emailList=document.getElementById("emailList");
 							badge.innerHTML=0;
-							emailList.innerHTML='<a id="sendButton" class="btn btn-success" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>';
+							emailList.innerHTML='<a id="sendButton" class="btn btn-success center-block" role="button" disabled="disabled" href="#" onClick="sendEmail();" data-toggle="modal" data-target="#sentModal">Send Emails</a>';
 		}
 		function addEmail() {
 				badge=document.getElementById("emailsBadge");
